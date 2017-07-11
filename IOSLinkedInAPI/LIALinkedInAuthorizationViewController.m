@@ -127,7 +127,8 @@ BOOL handlingRedirectURL;
                 self.failureCallback(error);
             }
         } else {
-            NSString *receivedState = [self extractGetParameter:@"state" fromURLString: url];
+            //NSString *receivedState = [self extractGetParameter:@"state" fromURLString: url];
+	NSString *receivedState = [[self extractGetParameter:@"state" fromURLString: url] stringByReplacingOccurrencesOfString:@"#!" withString:@""];
             //assert that the state is as we expected it to be
             if ([self.application.state isEqualToString:receivedState]) {
                 //extract the code from the url
